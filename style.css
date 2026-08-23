@@ -11,8 +11,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-
-/* Шапка сайта */
 .navbar {
     width: 100%;
     height: 70px;
@@ -22,14 +20,12 @@ body {
     align-items: center;
     padding: 0 40px;
     border-bottom: 1px solid #1f293d;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 .logo {
     font-size: 22px;
     font-weight: 900;
     color: #ff4757;
     letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(255, 71, 87, 0.4);
 }
 .nav-tabs {
     display: flex;
@@ -44,7 +40,6 @@ body {
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
-    transition: 0.2s;
 }
 .nav-btn.active, .nav-btn:hover {
     background: #1f293d;
@@ -59,8 +54,6 @@ body {
     font-weight: bold;
     border: 1px solid #23314a;
 }
-
-/* Основной контейнер */
 .main-content {
     max-width: 1200px;
     width: 100%;
@@ -78,10 +71,7 @@ body {
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #fff;
 }
-
-/* Сетка кейсов */
 .cases-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -97,18 +87,10 @@ body {
     align-items: center;
     cursor: pointer;
     transition: 0.3s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 .case-card:hover {
     transform: translateY(-5px);
     border-color: #ff4757;
-    box-shadow: 0 8px 25px rgba(255, 71, 87, 0.2);
-}
-.case-card img {
-    width: 130px;
-    height: 130px;
-    object-fit: contain;
-    margin: 15px 0;
 }
 .case-card-title {
     font-weight: bold;
@@ -124,8 +106,6 @@ body {
     font-weight: bold;
     font-size: 14px;
 }
-
-/* Окно открытия кейса */
 .back-btn {
     background: #182030;
     color: #a4b0be;
@@ -136,8 +116,6 @@ body {
     font-weight: bold;
     margin-bottom: 20px;
 }
-.back-btn:hover { background: #23314a; color: #fff; }
-
 .case-open-container {
     background: #121620;
     border: 1px solid #1f293d;
@@ -145,8 +123,11 @@ body {
     padding: 40px;
     text-align: center;
 }
-.case-desc { color: #8c9bae; margin-top: 5px; margin-bottom: 25px; }
-
+.case-desc {
+    color: #8c9bae;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
 .roulette-window {
     position: relative;
     width: 100%;
@@ -164,7 +145,6 @@ body {
     width: 4px; height: 100%;
     background: #ff4757;
     z-index: 10;
-    box-shadow: 0 0 10px #ff4757;
 }
 .roulette-track {
     display: flex;
@@ -180,11 +160,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 10px;
     border-right: 2px solid #121620;
 }
-.skin-card img { width: 75px; height: 75px; object-fit: contain; }
 .skin-name {
     font-size: 11px;
     color: #a4b0be;
@@ -194,8 +173,6 @@ body {
     width: 100%;
     text-align: center;
 }
-
-/* Редкость */
 .rarity-common { border-bottom: 4px solid #707070; }
 .rarity-rare { border-bottom: 4px solid #3b82f6; }
 .rarity-epic { border-bottom: 4px solid #a855f7; }
@@ -210,22 +187,16 @@ body {
     font-weight: bold;
     border-radius: 10px;
     cursor: pointer;
-    transition: 0.2s;
-    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
     text-transform: uppercase;
 }
-.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 71, 87, 0.6); }
-.btn:disabled { background: #3a3f4c; cursor: not-allowed; box-shadow: none; transform: none; }
+.btn:disabled { background: #3a3f4c; cursor: not-allowed; }
 .result-text { margin-top: 20px; font-size: 18px; font-weight: bold; min-height: 30px; }
 
-/* Инвентарь */
 .inventory-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 15px;
     margin-top: 20px;
-    max-height: 500px;
-    overflow-y: auto;
 }
 .inv-item {
     background: #121620;
@@ -236,9 +207,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 160px;
+    height: 150px;
 }
-.inv-item img { width: 70px; height: 70px; object-fit: contain; }
 .sell-btn {
     background: #2ed573;
     color: #fff;
@@ -250,10 +220,8 @@ body {
     cursor: pointer;
     width: 100%;
 }
-.sell-btn:hover { background: #26af5f; }
 .empty-inv { color: #747d8c; text-align: center; grid-column: 1 / -1; padding: 40px; }
 
-/* Апгрейд стили */
 .upgrade-wrapper {
     display: flex;
     justify-content: space-between;
@@ -269,9 +237,8 @@ body {
     padding: 20px;
     text-align: center;
 }
-.upgrade-box h3 { font-size: 14px; color: #a4b0be; margin-bottom: 10px; }
 .slot-select {
-    height: 130px;
+    height: 120px;
     background: #0b0e14;
     border: 2px dashed #1f293d;
     border-radius: 8px;
@@ -282,14 +249,10 @@ body {
     cursor: pointer;
     color: #747d8c;
     font-weight: bold;
-    transition: 0.2s;
+    margin-top: 10px;
 }
-.slot-select:hover { border-color: #ff4757; color: #fff; }
 .upgrade-vs { font-size: 24px; font-weight: bold; color: #ff4757; }
-.upgrade-info { text-align: center; font-size: 18px; font-weight: bold; margin: 20px 0; color: #a4b0be; }
-.upgrade-info span { color: #2ed573; }
-
-/* Модалка */
+.upgrade-info { text-align: center; font-size: 18px; font-weight: bold; margin: 20px 0; }
 .modal {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.8);
@@ -301,4 +264,3 @@ body {
     padding: 25px; border-radius: 16px; width: 90%; max-width: 500px;
     max-height: 80vh; overflow-y: auto;
 }
-.modal-content h3 { margin-bottom: 15px; text-align: center; }
