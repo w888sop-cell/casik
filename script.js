@@ -1,45 +1,96 @@
-// Используем встроенные графические иконки (SVG в коде), которые работают 100% без интернета и внешних сайтов
-const skins = [
-    { 
-        name: "P250 | Песчаная дюна", 
-        price: 10, 
-        rarity: "common", 
-        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'><rect width='100' height='100' fill='%231e2532'/><text x='50' y='55' font-size='40' text-anchor='middle' dominant-baseline='middle'>🔫</text></svg>" 
+// База доступных кейсов и их содержимого
+const casesData = [
+    {
+        id: 1,
+        name: "Оружейный кейс #1",
+        price: 150,
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'><rect width='100' height='100' fill='%23182030' rx='20'/><text x='50' y='55' font-size='45' text-anchor='middle' dominant-baseline='middle'>🎁</text></svg>",
+        skins: [
+            { name: "P250 | Песчаная дюна", price: 10, rarity: "common", img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'><text x='50' y='55' font-size='40' text-anchor='middle' dominant-baseline='middle'>🔫</text></svg>" },
+            { name: "AK-47 | Сафари сет", price: 40, rarity: "common", img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'><text x='50' y='55' font-size='40' text-anchor='middle' dominant-baseline='middle'>🔥</text></svg>" },
+            { name: "M4A4 | Отрешение", price: 120, rarity: "rare", img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'><text x='50' y='55' font-size='40' text-anchor='middle' dominant-baseline='middle'>🛡️</text></svg>" },
+            { name: "AWP | Морской вор", price: 350, rarity: "epic", img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'><text x='50' y='55' font-size='40' text-anchor='middle' dominant-baseline='middle'>🎯</text></svg>" },
+            { name: "Karambit | Водная струя", price: 2500, rarity: "legendary", img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'><text x='50' y='55' font-size='40' text-anchor='middle' dominant-baseline='middle'>🗡️</text></svg>" }
+        ]
     },
-    { 
-        name: "AK-47 | Сафари сет", 
-        price: 40, 
-        rarity: "common", 
-        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'><rect width='100' height='100' fill='%231e2532'/><text x='50' y='55' font-size='40' text-anchor='middle' dominant-baseline='middle'>🔥</text></svg>" 
-    },
-    { 
-        name: "M4A4 | Отрешение", 
-        price: 120, 
-        rarity: "rare", 
-        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'><rect width='100' height='100' fill='%231e2532'/><text x='50' y='55' font-size='40' text-anchor='middle' dominant-baseline='middle'>🛡️</text></svg>" 
-    },
-    { 
-        name: "AWP | Морской вор", 
-        price: 350, 
-        rarity: "epic", 
-        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'><rect width='100' height='100' fill='%231e2532'/><text x='50' y='55' font-size='40' text-anchor='middle' dominant-baseline='middle'>🎯</text></svg>" 
-    },
-    { 
-        name: "Karambit | Водная струя", 
-        price: 2500, 
-        rarity: "legendary", 
-        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'><rect width='100' height='100' fill='%231e2532'/><text x='50' y='55' font-size='40' text-anchor='middle' dominant-baseline='middle'>🗡️</text></svg>" 
+    {
+        id: 2,
+        name: "Премиум кейс",
+        price: 500,
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'><rect width='100' height='100' fill='%23182030' rx='20'/><text x='50' y='55' font-size='45' text-anchor='middle' dominant-baseline='middle'>💎</text></svg>",
+        skins: [
+            { name: "USP-S | Убийство подтверждено", price: 200, rarity: "rare", img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'><text x='50' y='55' font-size='40' text-anchor='middle' dominant-baseline='middle'>🔫</text></svg>" },
+            { name: "Desert Eagle | Пламя", price: 700, rarity: "epic", img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'><text x='50' y='55' font-size='40' text-anchor='middle' dominant-baseline='middle'>🔥</text></svg>" },
+            { name: "Butterfly | Градиент", price: 5000, rarity: "legendary", img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'><text x='50' y='55' font-size='40' text-anchor='middle' dominant-baseline='middle'>🗡️</text></svg>" }
+        ]
     }
 ];
 
 let balance = 1000;
 let inventory = [];
-const casePrice = 150;
+let currentCase = null;
 
-// Данные для апгрейда
 let selectedSourceItem = null;
 let selectedTargetItem = null;
 let selectMode = '';
+
+// Рендер сетки кейсов на главной
+function renderCases() {
+    const grid = document.getElementById('casesGrid');
+    grid.innerHTML = '';
+    casesData.forEach(c => {
+        const card = document.createElement('div');
+        card.className = 'case-card';
+        card.onclick = () => selectCase(c.id);
+        card.innerHTML = `
+            <img src="${c.img}" alt="${c.name}">
+            <div class="case-card-title">${c.name}</div>
+            <div class="case-card-price">${c.price} ₽</div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+renderCases();
+
+function switchTab(tabId, event) {
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    
+    if (tabId === 'cases') {
+        document.getElementById('tab-cases').classList.add('active');
+        if (event && event.target.classList.contains('nav-btn')) event.target.classList.add('active');
+    } else {
+        document.getElementById(`tab-${tabId}`).classList.add('active');
+        if (event && event.target.classList.contains('nav-btn')) event.target.classList.add('active');
+    }
+}
+
+function selectCase(caseId) {
+    currentCase = casesData.find(c => c.id === caseId);
+    document.getElementById('activeCaseTitle').innerText = currentCase.name;
+    document.getElementById('activeCasePrice').innerText = currentCase.price;
+    
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-case-open').classList.add('active');
+    
+    initTrack();
+}
+
+function getRandomSkinFromCase() {
+    const skins = currentCase.skins;
+    const rand = Math.random() * 100;
+    if (skins.length === 3) {
+        if (rand < 70) return skins[0];
+        if (rand < 95) return skins[1];
+        return skins[2];
+    }
+    if (rand < 55) return skins[0];
+    if (rand < 80) return skins[1];
+    if (rand < 93) return skins[2];
+    if (rand < 98.5) return skins[3];
+    return skins[4];
+}
 
 const track = document.getElementById('track');
 const balanceEl = document.getElementById('balance');
@@ -48,27 +99,10 @@ const resultText = document.getElementById('resultText');
 const invCountEl = document.getElementById('invCount');
 const inventoryGrid = document.getElementById('inventoryGrid');
 
-function switchTab(tabId) {
-    document.querySelectorAll('.container').forEach(c => c.classList.remove('active-tab'));
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    
-    document.getElementById(`tab-${tabId}`).classList.add('active-tab');
-    event.target.classList.add('active');
-}
-
-function getRandomSkin() {
-    const rand = Math.random() * 100;
-    if (rand < 55) return skins[0];
-    if (rand < 80) return skins[1];
-    if (rand < 93) return skins[2];
-    if (rand < 98.5) return skins[3];
-    return skins[4];
-}
-
 function initTrack() {
     track.innerHTML = '';
     for (let i = 0; i < 50; i++) {
-        const skin = getRandomSkin();
+        const skin = getRandomSkinFromCase();
         const card = document.createElement('div');
         card.className = `skin-card rarity-${skin.rarity}`;
         card.innerHTML = `
@@ -80,15 +114,13 @@ function initTrack() {
     track.style.left = '0px';
 }
 
-initTrack();
-
-function openCase() {
-    if (balance < casePrice) {
+function openCurrentCase() {
+    if (balance < currentCase.price) {
         alert("Недостаточно средств на балансе!");
         return;
     }
 
-    balance -= casePrice;
+    balance -= currentCase.price;
     balanceEl.innerText = balance;
     openBtn.disabled = true;
     resultText.innerText = "Крутим рулетку...";
@@ -96,7 +128,7 @@ function openCase() {
 
     initTrack();
     const winningIndex = 35;
-    const winningSkin = getRandomSkin();
+    const winningSkin = getRandomSkinFromCase();
     
     const cards = track.children;
     cards[winningIndex].className = `skin-card rarity-${winningSkin.rarity}`;
@@ -123,7 +155,7 @@ function openCase() {
 function updateInventoryUI() {
     invCountEl.innerText = inventory.length;
     if (inventory.length === 0) {
-        inventoryGrid.innerHTML = `<div class="empty-inv">Инвентарь пуст. Откройте кейс, чтобы получить скины!</div>`;
+        inventoryGrid.innerHTML = `<div class="empty-inv">Инвентарь пуст. Откройте кейсы во вкладке «Кейсы»!</div>`;
         return;
     }
 
@@ -147,8 +179,7 @@ function sellSkin(index) {
     updateInventoryUI();
 }
 
-// --- ЛОГИКА АПГРЕЙДА ---
-
+// Апгрейды
 function openSelectModal(mode) {
     selectMode = mode;
     const modal = document.getElementById('selectModal');
@@ -174,7 +205,11 @@ function openSelectModal(mode) {
         });
     } else {
         document.getElementById('modalTitle').innerText = "Выберите желаемый скин";
-        skins.forEach((item) => {
+        // Собираем все скины со всех кейсов для выбора цели
+        let allSkins = [];
+        casesData.forEach(c => allSkins.push(...c.skins));
+
+        allSkins.forEach((item) => {
             const itemEl = document.createElement('div');
             itemEl.className = `inv-item rarity-${item.rarity}`;
             itemEl.innerHTML = `
