@@ -23,11 +23,26 @@ const casesData = [
     }
 ];
 
-let balance = 1000;
-let inventory = [];
+// Загрузка данных из локальной базы (localStorage) телефона
+let balance = localStorage.getItem('case_balance') !== null ? parseInt(localStorage.getItem('case_balance')) : 1000;
+let inventory = localStorage.getItem('case_inventory') ? JSON.parse(localStorage.getItem('case_inventory')) : [];
+
 let currentCase = null;
 let selectedSourceItem = null;
 let selectedTargetItem = null;
+
+// Функция сохранения данных
+function saveGameData() {
+    localStorage.setItem('case_balance', balance);
+    localStorage.setItem('case_inventory', JSON.stringify(inventory));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const balanceEl = document.getElementById('balance');
+    if (balanceEl) balanceEl.innerText = balance;
+    renderCases();
+    updateInventoryUI();
+});
 
 function renderCases() {
     const grid = document.getElementById('casesGrid');
@@ -45,7 +60,6 @@ function renderCases() {
         grid.appendChild(card);
     });
 }
-renderCases();
 
 function switchTab(tabId, event) {
     document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
@@ -110,6 +124,8 @@ function openCurrentCase() {
     }
     balance -= currentCase.price;
     balanceEl.innerText = balance;
+    saveGameData(); // Сохраняем баланс
+
     openBtn.disabled = true;
     resultText.innerText = "Крутим...";
 
@@ -132,6 +148,7 @@ function openCurrentCase() {
 
     setTimeout(() => {
         inventory.push({ ...winningSkin, id: Date.now() + Math.random() });
+        saveGameData(); // Сохраняем инвентарь
         updateInventoryUI();
         resultText.innerHTML = `Вы выиграли: <span style="color: #2ed573;">${winningSkin.name}</span>`;
         openBtn.disabled = false;
@@ -161,6 +178,7 @@ function updateInventoryUI() {
 function sellSkin(index) {
     balance += inventory.splice(index, 1)[0].price;
     balanceEl.innerText = balance;
+    saveGameData(); // Сохраняем баланс и обновленный инвентарь
     updateInventoryUI();
 }
 
@@ -197,6 +215,7 @@ function closeSelectModal() { document.getElementById('selectModal').style.displ
 
 function selectSource(index) {
     selectedSourceItem = inventory.splice(index, 1)[0];
+    saveGameData();
     updateInventoryUI();
     document.getElementById('upgradeSourceSlot').innerHTML = `<div style="font-size:25px;">${selectedSourceItem.icon}</div><div>${selectedSourceItem.name}</div>`;
     closeSelectModal();
@@ -229,6 +248,7 @@ function startUpgrade() {
         } else {
             document.getElementById('upgradeResultText').innerHTML = `<span style="color:#ff4757">Неудача!</span>`;
         }
+        saveGameData();
         updateInventoryUI();
         selectedSourceItem = null; selectedTargetItem = null;
         document.getElementById('upgradeSourceSlot').innerHTML = `<span>Выберите скин</span>`;
