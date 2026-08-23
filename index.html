@@ -12,10 +12,11 @@
         <div class="nav-tabs">
             <button class="nav-btn active" onclick="switchTab('cases', event)">Кейсы</button>
             <button class="nav-btn" onclick="switchTab('upgrade', event)">Апгрейд</button>
+            <button class="nav-btn" onclick="switchTab('deposit', event)">Пополнить</button>
             <button class="nav-btn" onclick="switchTab('inventory', event)">Инвентарь (<span id="invCount">0</span>)</button>
         </div>
         <div class="user-panel" style="display: flex; align-items: center; gap: 15px;">
-            <div class="balance">💳 <span id="balance">1000</span> ₽</div>
+            <div class="balance">💳 <span id="balance">0</span> ₽</div>
             <div id="userProfile" style="font-size: 14px; background: #182030; padding: 10px 15px; border-radius: 8px; border: 1px solid #23314a;">
                 <span id="userEmailDisplay">Не авторизован</span>
             </div>
@@ -23,11 +24,13 @@
     </header>
 
     <main class="main-content">
+        <!-- Вкладка кейсов -->
         <div class="tab-pane active" id="tab-cases">
             <div class="section-title">Фирменные кейсы</div>
             <div class="cases-grid" id="casesGrid"></div>
         </div>
 
+        <!-- Открытие кейса -->
         <div class="tab-pane" id="tab-case-open">
             <button class="back-btn" onclick="switchTab('cases', event)">← Назад к кейсам</button>
             <div class="case-open-container">
@@ -42,6 +45,7 @@
             </div>
         </div>
 
+        <!-- Вкладка апгрейда -->
         <div class="tab-pane" id="tab-upgrade">
             <div class="section-title">Апгрейд скинов</div>
             <div class="upgrade-wrapper">
@@ -62,6 +66,24 @@
             <div class="result-text" id="upgradeResultText"></div>
         </div>
 
+        <!-- Вкладка пополнения баланса -->
+        <div class="tab-pane" id="tab-deposit">
+            <div class="section-title">Пополнение баланса</div>
+            <div class="case-open-container" style="max-width: 500px; margin: 0 auto; text-align: center;">
+                <p style="color: #8c9bae; margin-bottom: 20px; line-height: 1.5;">
+                    Для пополнения баланса переведите необходимую сумму по ссылке ниже через Т-Банк. После успешного перевода нажмите кнопку проверки платежа.
+                </p>
+                <a href="https://www.tbank.ru/cf/5mLJeUSLd7k" target="_blank" class="btn" style="display: inline-block; text-decoration: none; margin-bottom: 20px; background: #3b82f6; width: 100%; box-sizing: border-box;">
+                    Перейти к оплате (Т-Банк) ↗
+                </a>
+                <button class="btn" id="checkPaymentBtn" onclick="checkPayment()" style="width: 100%; background: #2ed573; color: #0b0e14; font-weight: bold;">
+                    Проверить платеж
+                </button>
+                <div class="result-text" id="depositResultText" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+
+        <!-- Вкладка инвентаря -->
         <div class="tab-pane" id="tab-inventory">
             <div class="section-title">Ваш инвентарь</div>
             <div class="inventory-grid" id="inventoryGrid">
