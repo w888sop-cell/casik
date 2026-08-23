@@ -1,0 +1,222 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+    background-color: #0b0e14;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+header {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #151a23;
+    padding: 15px 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 1px solid #222b3b;
+}
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff4757;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.nav-tabs {
+    display: flex;
+    gap: 10px;
+}
+.nav-btn {
+    background: #1e2532;
+    color: #a4b0be;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+.nav-btn.active, .nav-btn:hover {
+    background: #ff4757;
+    color: #fff;
+}
+.user-panel {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.balance {
+    font-size: 16px;
+    background: #1e2532;
+    padding: 8px 15px;
+    border-radius: 8px;
+    color: #2ed573;
+    font-weight: bold;
+}
+.container {
+    width: 100%;
+    max-width: 900px;
+    background: #151a23;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    border: 1px solid #222b3b;
+    display: none;
+}
+.container.active-tab {
+    display: block;
+}
+.case-desc {
+    color: #747d8c;
+    margin-top: 5px;
+}
+
+/* Рулетка */
+.roulette-window {
+    position: relative;
+    width: 100%;
+    height: 140px;
+    background: #0b0e14;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+    border: 2px solid #222b3b;
+}
+.roulette-pointer {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background: #ff4757;
+    z-index: 10;
+    box-shadow: 0 0 10px #ff4757;
+}
+.roulette-track {
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    transition: left 4s cubic-bezier(0.15, 0.85, 0.35, 1);
+}
+.skin-card {
+    min-width: 120px;
+    height: 140px;
+    background: #1e2532;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-right: 2px solid #151a23;
+}
+.skin-card img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+}
+.skin-name {
+    font-size: 11px;
+    color: #a4b0be;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
+}
+
+/* Редкость */
+.rarity-common { border-bottom: 4px solid #707070; }
+.rarity-rare { border-bottom: 4px solid #3b82f6; }
+.rarity-epic { border-bottom: 4px solid #a855f7; }
+.rarity-legendary { border-bottom: 4px solid #eab308; }
+
+.btn {
+    background: linear-gradient(135deg, #ff4757, #ff6b81);
+    color: white;
+    border: none;
+    padding: 14px 35px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+    text-transform: uppercase;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 71, 87, 0.6);
+}
+.btn:disabled {
+    background: #3a3f4c;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+.result-text {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    min-height: 25px;
+    text-align: center;
+}
+
+/* Инвентарь */
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+.inv-item {
+    background: #1e2532;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 150px;
+}
+.inv-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+.sell-btn {
+    background: #2ed573;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
+.sell-btn:hover {
+    background: #26af5f;
+}
+.empty-inv {
+    color: #747d8c;
+    text-align: center;
+    grid-column: 1 / -1;
+    padding: 40px;
+}
