@@ -23,7 +23,7 @@ const casesData = [
     }
 ];
 
-// Данные профиля и игры из localStorage
+// Загрузка данных игрока
 let currentUser = localStorage.getItem('case_user_gmail') || null;
 let balance = localStorage.getItem('case_balance') !== null ? parseInt(localStorage.getItem('case_balance')) : 1000;
 let inventory = localStorage.getItem('case_inventory') ? JSON.parse(localStorage.getItem('case_inventory')) : [];
@@ -43,31 +43,26 @@ function saveGameData() {
 document.addEventListener("DOMContentLoaded", () => {
     const balanceEl = document.getElementById('balance');
     if (balanceEl) balanceEl.innerText = balance;
-    updateUserUI();
+
+    // Проверяем, входил ли пользователь раньше
+    if (!currentUser) {
+        document.getElementById('authModal').style.display = 'flex';
+    } else {
+        updateUserUI();
+    }
+
     renderCases();
     updateInventoryUI();
 });
 
 function updateUserUI() {
     const emailDisplay = document.getElementById('userEmailDisplay');
-    if (emailDisplay) {
-        if (currentUser) {
-            emailDisplay.innerText = currentUser;
-        } else {
-            emailDisplay.innerText = "Войти (Gmail)";
-        }
+    if (emailDisplay && currentUser) {
+        emailDisplay.innerText = currentUser;
     }
 }
 
-function openAuthModal() {
-    document.getElementById('authModal').style.display = 'flex';
-}
-
-function closeAuthModal() {
-    document.getElementById('authModal').style.display = 'none';
-}
-
-function loginWithGmail() {
+function registerWithGmail() {
     const input = document.getElementById('gmailInput').value.trim();
     if (!input || !input.endsWith('@gmail.com')) {
         alert("Пожалуйста, введите корректный адрес @gmail.com");
@@ -76,8 +71,7 @@ function loginWithGmail() {
     currentUser = input;
     saveGameData();
     updateUserUI();
-    closeAuthModal();
-    alert(`Успешный вход под аккаунтом: ${currentUser}`);
+    document.getElementById('authModal').style.display = 'none';
 }
 
 function renderCases() {
