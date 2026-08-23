@@ -23,9 +23,9 @@ const casesData = [
     }
 ];
 
-// Загрузка данных игрока
+// Загрузка данных игрока (по умолчанию баланс 0 для новых)
 let currentUser = localStorage.getItem('case_user_gmail') || null;
-let balance = localStorage.getItem('case_balance') !== null ? parseInt(localStorage.getItem('case_balance')) : 1000;
+let balance = localStorage.getItem('case_balance') !== null ? parseInt(localStorage.getItem('case_balance')) : 0;
 let inventory = localStorage.getItem('case_inventory') ? JSON.parse(localStorage.getItem('case_inventory')) : [];
 
 let currentCase = null;
@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const balanceEl = document.getElementById('balance');
     if (balanceEl) balanceEl.innerText = balance;
 
-    // Проверяем, входил ли пользователь раньше
     if (!currentUser) {
         document.getElementById('authModal').style.display = 'flex';
     } else {
@@ -99,6 +98,26 @@ function switchTab(tabId, event) {
     if (event && event.target.classList.contains('nav-btn')) event.target.classList.add('active');
 }
 
+// Функция проверки платежа
+function checkPayment() {
+    const btn = document.getElementById('checkPaymentBtn');
+    const resultDiv = document.getElementById('depositResultText');
+    
+    btn.disabled = true;
+    resultDiv.innerHTML = `<span style="color: #3b82f6;">Проверяем платеж в системе Т-Банк...</span>`;
+
+    setTimeout(() => {
+        // Добавляем тестовые 1000 рублей (можешь изменить сумму)
+        let addedAmount = 1000;
+        balance += addedAmount;
+        balanceEl.innerText = balance;
+        saveGameData();
+
+        resultDiv.innerHTML = `<span style="color: #2ed573;">Платеж успешно найден! Зачислено: +${addedAmount} ₽</span>`;
+        btn.disabled = false;
+    }, 2500);
+}
+
 function selectCase(caseId) {
     currentCase = casesData.find(c => c.id === caseId);
     document.getElementById('activeCaseTitle').innerText = currentCase.name;
@@ -149,7 +168,8 @@ function initTrack() {
 
 function openCurrentCase() {
     if (balance < currentCase.price) {
-        alert("Недостаточно средств!");
+        alert("Недостаточно средств! Пополните баланс во вкладке «Пополнить».");
+        switchTab('deposit');
         return;
     }
     balance -= currentCase.price;
