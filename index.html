@@ -16,8 +16,8 @@
         </div>
         <div class="user-panel" style="display: flex; align-items: center; gap: 15px;">
             <div class="balance">💳 <span id="balance">1000</span> ₽</div>
-            <div id="userProfile" style="cursor: pointer; font-size: 14px; background: #182030; padding: 10px 15px; border-radius: 8px; border: 1px solid #23314a;" onclick="openAuthModal()">
-                <span id="userEmailDisplay">Войти</span>
+            <div id="userProfile" style="font-size: 14px; background: #182030; padding: 10px 15px; border-radius: 8px; border: 1px solid #23314a;">
+                <span id="userEmailDisplay">Не авторизован</span>
             </div>
         </div>
     </header>
@@ -79,14 +79,13 @@
         </div>
     </div>
 
-    <!-- Модальное окно авторизации через Gmail -->
-    <div class="modal" id="authModal" style="display:none;">
-        <div class="modal-content" style="text-align: center;">
-            <h3>Авторизация</h3>
-            <p style="color: #8c9bae; margin: 10px 0 20px 0; font-size: 14px;">Введите ваш Gmail для входа в аккаунт</p>
-            <input type="email" id="gmailInput" placeholder="example@gmail.com" style="width: 100%; padding: 12px; background: #0b0e14; border: 1px solid #1f293d; color: #fff; border-radius: 8px; margin-bottom: 15px; font-size: 14px;">
-            <button class="btn" style="width: 100%; padding: 12px;" onclick="loginWithGmail()">Войти через Gmail</button>
-            <button class="btn" style="margin-top: 10px; width: 100%; padding: 10px; background: #1f293d;" onclick="closeAuthModal()">Отмена</button>
+    <!-- Обязательное окно регистрации при первом входе -->
+    <div class="modal" id="authModal" style="display:none; align-items: center; justify-content: center;">
+        <div class="modal-content" style="text-align: center; max-width: 400px; width: 90%;">
+            <h2>Добро пожаловать!</h2>
+            <p style="color: #8c9bae; margin: 10px 0 20px 0; font-size: 14px;">Введите ваш Gmail для сохранения баланса и инвентаря</p>
+            <input type="email" id="gmailInput" placeholder="example@gmail.com" style="width: 100%; padding: 12px; background: #0b0e14; border: 1px solid #1f293d; color: #fff; border-radius: 8px; margin-bottom: 15px; font-size: 14px; box-sizing: border-box;">
+            <button class="btn" style="width: 100%; padding: 12px;" onclick="registerWithGmail()">Начать игру</button>
         </div>
     </div>
 
