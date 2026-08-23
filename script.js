@@ -23,7 +23,8 @@ const casesData = [
     }
 ];
 
-// Загрузка данных из локальной базы (localStorage) телефона
+// Данные профиля и игры из localStorage
+let currentUser = localStorage.getItem('case_user_gmail') || null;
 let balance = localStorage.getItem('case_balance') !== null ? parseInt(localStorage.getItem('case_balance')) : 1000;
 let inventory = localStorage.getItem('case_inventory') ? JSON.parse(localStorage.getItem('case_inventory')) : [];
 
@@ -31,18 +32,53 @@ let currentCase = null;
 let selectedSourceItem = null;
 let selectedTargetItem = null;
 
-// Функция сохранения данных
 function saveGameData() {
     localStorage.setItem('case_balance', balance);
     localStorage.setItem('case_inventory', JSON.stringify(inventory));
+    if (currentUser) {
+        localStorage.setItem('case_user_gmail', currentUser);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     const balanceEl = document.getElementById('balance');
     if (balanceEl) balanceEl.innerText = balance;
+    updateUserUI();
     renderCases();
     updateInventoryUI();
 });
+
+function updateUserUI() {
+    const emailDisplay = document.getElementById('userEmailDisplay');
+    if (emailDisplay) {
+        if (currentUser) {
+            emailDisplay.innerText = currentUser;
+        } else {
+            emailDisplay.innerText = "Войти (Gmail)";
+        }
+    }
+}
+
+function openAuthModal() {
+    document.getElementById('authModal').style.display = 'flex';
+}
+
+function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
+}
+
+function loginWithGmail() {
+    const input = document.getElementById('gmailInput').value.trim();
+    if (!input || !input.endsWith('@gmail.com')) {
+        alert("Пожалуйста, введите корректный адрес @gmail.com");
+        return;
+    }
+    currentUser = input;
+    saveGameData();
+    updateUserUI();
+    closeAuthModal();
+    alert(`Успешный вход под аккаунтом: ${currentUser}`);
+}
 
 function renderCases() {
     const grid = document.getElementById('casesGrid');
@@ -124,7 +160,7 @@ function openCurrentCase() {
     }
     balance -= currentCase.price;
     balanceEl.innerText = balance;
-    saveGameData(); // Сохраняем баланс
+    saveGameData();
 
     openBtn.disabled = true;
     resultText.innerText = "Крутим...";
@@ -148,7 +184,7 @@ function openCurrentCase() {
 
     setTimeout(() => {
         inventory.push({ ...winningSkin, id: Date.now() + Math.random() });
-        saveGameData(); // Сохраняем инвентарь
+        saveGameData();
         updateInventoryUI();
         resultText.innerHTML = `Вы выиграли: <span style="color: #2ed573;">${winningSkin.name}</span>`;
         openBtn.disabled = false;
@@ -178,7 +214,7 @@ function updateInventoryUI() {
 function sellSkin(index) {
     balance += inventory.splice(index, 1)[0].price;
     balanceEl.innerText = balance;
-    saveGameData(); // Сохраняем баланс и обновленный инвентарь
+    saveGameData();
     updateInventoryUI();
 }
 
