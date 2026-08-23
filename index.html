@@ -14,8 +14,11 @@
             <button class="nav-btn" onclick="switchTab('upgrade', event)">Апгрейд</button>
             <button class="nav-btn" onclick="switchTab('inventory', event)">Инвентарь (<span id="invCount">0</span>)</button>
         </div>
-        <div class="user-panel">
+        <div class="user-panel" style="display: flex; align-items: center; gap: 15px;">
             <div class="balance">💳 <span id="balance">1000</span> ₽</div>
+            <div id="userProfile" style="cursor: pointer; font-size: 14px; background: #182030; padding: 10px 15px; border-radius: 8px; border: 1px solid #23314a;" onclick="openAuthModal()">
+                <span id="userEmailDisplay">Войти</span>
+            </div>
         </div>
     </header>
 
@@ -67,11 +70,23 @@
         </div>
     </main>
 
+    <!-- Модальное окно выбора предметов -->
     <div class="modal" id="selectModal" style="display:none;">
         <div class="modal-content">
             <h3 id="modalTitle">Выберите скин</h3>
             <div class="inventory-grid" id="modalGrid"></div>
             <button class="btn" style="margin-top: 15px; width: 100%; padding: 10px;" onclick="closeSelectModal()">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно авторизации через Gmail -->
+    <div class="modal" id="authModal" style="display:none;">
+        <div class="modal-content" style="text-align: center;">
+            <h3>Авторизация</h3>
+            <p style="color: #8c9bae; margin: 10px 0 20px 0; font-size: 14px;">Введите ваш Gmail для входа в аккаунт</p>
+            <input type="email" id="gmailInput" placeholder="example@gmail.com" style="width: 100%; padding: 12px; background: #0b0e14; border: 1px solid #1f293d; color: #fff; border-radius: 8px; margin-bottom: 15px; font-size: 14px;">
+            <button class="btn" style="width: 100%; padding: 12px;" onclick="loginWithGmail()">Войти через Gmail</button>
+            <button class="btn" style="margin-top: 10px; width: 100%; padding: 10px; background: #1f293d;" onclick="closeAuthModal()">Отмена</button>
         </div>
     </div>
 
