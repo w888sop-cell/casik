@@ -31,6 +31,7 @@ let selectedTargetItem = null;
 
 function renderCases() {
     const grid = document.getElementById('casesGrid');
+    if (!grid) return;
     grid.innerHTML = '';
     casesData.forEach(c => {
         const card = document.createElement('div');
@@ -87,6 +88,7 @@ const invCountEl = document.getElementById('invCount');
 const inventoryGrid = document.getElementById('inventoryGrid');
 
 function initTrack() {
+    if (!track) return;
     track.innerHTML = '';
     for (let i = 0; i < 50; i++) {
         const skin = getRandomSkinFromCase();
@@ -131,12 +133,13 @@ function openCurrentCase() {
     setTimeout(() => {
         inventory.push({ ...winningSkin, id: Date.now() + Math.random() });
         updateInventoryUI();
-        resultText.innerHTML = `Вы выиграл: <span style="color: #2ed573;">${winningSkin.name}</span>`;
+        resultText.innerHTML = `Вы выиграли: <span style="color: #2ed573;">${winningSkin.name}</span>`;
         openBtn.disabled = false;
     }, 4000);
 }
 
 function updateInventoryUI() {
+    if (!invCountEl || !inventoryGrid) return;
     invCountEl.innerText = inventory.length;
     if (inventory.length === 0) {
         inventoryGrid.innerHTML = `<div class="empty-inv">Инвентарь пуст</div>`;
