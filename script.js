@@ -1,9 +1,9 @@
 const skins = [
-    { name: "P250 | Песчаная дюна", price: 10, rarity: "common", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FABz7PLfYQJD_9W7m5O0m_7zO6_um1Rd6ct0j9bN8onzjFWx-ktqa2-iJtSRdwZvYwqDqVW-ye3vjMW5vp6YzHc373En7GqMl0a-101HPayh/360fx360f" },
-    { name: "AK-47 | Сафари сет", price: 40, rarity: "common", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV092lnYmOhOTLPr7Vj35cppRz2r2Tptqi3lKx_hc4YmD0J4_BcAA3Zg7Zqle3k-_mg5a6vprPzyVl7CJ2sH7UmUa_00kca7Nrhu6A/360fx360f" },
-    { name: "M4A4 | Отрешение", price: 120, rarity: "rare", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITCl3wev5V1j-vIoImn2AXkqkVuazqicNWRIQU8N1uC-1a7kuq8gpXru8yfz3NnvXZ25HaOzBOy005LNuNqhuw/360fx360f" },
-    { name: "AWP | Морской вор", price: 350, rarity: "epic", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FBRw7P7NcIQh7v-JmImMn-O6OrzZghUC68Bz3b2UooztjgO3_kVoN2_xLI6ddgM3YlzV_Fm7xLro1ce_6pudySZkuicr5yremhCzhxlEcuJt2v7JWQ/360fx360f" },
-    { name: "Karambit | Водная струя", price: 2500, rarity: "legendary", img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpotuKkFABz7PLfYQJD_9W7m5O0m_7zO6_um1Rd6ct0j9bN8onzjFWx-ktqa2-iJtSRdwZvYwqDqVW-ye3vjMW5vp6YzHc373En7GqMl0a-101HPayh/360fx360f" }
+    { name: "P250 | Песчаная дюна", price: 10, rarity: "common", img: "https://images.unsplash.com/photo-1595590424283-b8f17842773f?w=150&auto=format&fit=crop&q=80" },
+    { name: "AK-47 | Сафари сет", price: 40, rarity: "common", img: "https://images.unsplash.com/photo-1563089145-599997674d42?w=150&auto=format&fit=crop&q=80" },
+    { name: "M4A4 | Отрешение", price: 120, rarity: "rare", img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=150&auto=format&fit=crop&q=80" },
+    { name: "AWP | Морской вор", price: 350, rarity: "epic", img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=150&auto=format&fit=crop&q=80" },
+    { name: "Karambit | Водная струя", price: 2500, rarity: "legendary", img: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=150&auto=format&fit=crop&q=80" }
 ];
 
 let balance = 1000;
